@@ -19,11 +19,8 @@ RUN nginx -t
 RUN /etc/init.d/nginx restart
 RUN mkdir /etc/nginx/ssl
 RUN openssl req -subj "/C=SP/ST=Malaga/L=Malaga/O=42Malaga/OU=anttorre/CN=anttorre.42.fr" -new -newkey rsa:2048 -days 365 -nodes -x509  -keyout /etc/nginx/ssl/anttorre.42.fr.key -out /etc/nginx/ssl/anttorre.42.fr.crt
+#RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.original
 #COPY conf/nginx.conf /etc/nginx/nginx.conf
-#COPY tools/nginx_setup.sh /usr/local/bin/nginx_setup.sh
-#COPY tools/index.html /var/www/html
-
-#RUN chmod +x /usr/local/bin/nginx_setup.sh
 
 EXPOSE 443
 EXPOSE 80

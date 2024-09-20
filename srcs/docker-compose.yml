@@ -13,6 +13,19 @@ services:
     env_file:
       - .env
     restart: on-failure:5
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+    container_name: mariadb
+    expose:
+      - "3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - inception
+    env_file:
+      - .env
+    restart: on-failure:5
 
 volumes:
   wp_data:
@@ -21,6 +34,12 @@ volumes:
       o: bind
       type: none
       device: /home/${USER}/data/wordpress
+  mariadb_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/${USER}/data/mariadb
 
 networks:
   inception:
