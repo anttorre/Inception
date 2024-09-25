@@ -30,12 +30,12 @@ services:
       - .env
     restart: on-failure:5
 
-   wordpress:
+  wordpress:
     build:
       context: ./requirements/wordpress
     container_name: wordpress
     volumes:
-      - wordpress_data:/var/www/html
+      - wp_data:/var/www/html
     networks:
       - inception
     env_file:
@@ -51,7 +51,6 @@ volumes:
       o: bind
       type: none
       device: /home/${USER}/data/wordpress
-
   mariadb_data:
     driver: local
     driver_opts:
