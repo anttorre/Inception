@@ -44,6 +44,17 @@ services:
       - mariadb
     restart: on-failure:5
 
+  adminer:
+    build:
+      context: ./requirements/bonus/adminer
+    container_name: adminer
+    volumes:
+      - wp_data:/var/www/html
+    ports:
+      - "8080:8080"
+    networks:
+      - inception
+
 volumes:
   wp_data:
     driver: local
