@@ -11,8 +11,8 @@ RUN set -eux; \
   rm -rf /var/lib/apt/lists/*
 
 COPY tools/index.static.html /
-COPY tools/static-site /etc/nginx/sites-available/
 RUN cp index.static.html /var/www/html/
+COPY tools/static-site /etc/nginx/sites-available/
 RUN rm -rf /etc/nginx/sites-enabled/default && rm -rf /etc/nginx/sites-available/default
 RUN ln -s /etc/nginx/sites-available/static-site /etc/nginx/sites-enabled/
 RUN nginx -t
