@@ -11,7 +11,6 @@ RUN set -eux; \
   rm -rf /var/lib/apt/lists/*
 
 COPY tools/index.static.html /
-RUN cp index.static.html /var/www/html/
 COPY tools/static-site /etc/nginx/sites-available/
 RUN rm -rf /etc/nginx/sites-enabled/default && rm -rf /etc/nginx/sites-available/default
 RUN ln -s /etc/nginx/sites-available/static-site /etc/nginx/sites-enabled/
@@ -25,4 +24,7 @@ COPY conf/nginx.conf /etc/nginx/nginx.conf
 EXPOSE 443
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY tools/start.sh /start.sh
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]

@@ -44,7 +44,7 @@ re: down
 clean: down
 	@printf "Cleaning ${name}...\\n"
 	@docker system prune -a
-	@chmod -R 777 ~/data
+	@sudo chmod -R 777 ~/data
 	@sudo rm -rf ~/data/wordpress/*
 	@sudo rm -rf ~/data/mariadb/*
 
