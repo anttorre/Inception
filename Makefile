@@ -50,15 +50,15 @@ clean: down
 
 fclean:
 	@printf "Full cleaning ${name}...\\n"
-	@docker stop $$(docker ps -qa)
-	@docker system prune --all --force --volumes
-	@docker network prune --force
-	@docker volume prune --force
-	@docker volume rm $$(docker volume ls -q)
 	@sudo chmod -R 777 ~/data
 	@sudo rm -rf ~/data/mariadb/*
 	@sudo rm -rf ~/data/wordpress/*
 	@sudo rm -rf ~/data/*
 	@sudo rm -rf ~/data
+	@docker stop $$(docker ps -qa)
+	@docker system prune --all --force --volumes
+	@docker network prune --force
+	@docker volume prune --force
+	@docker volume rm $$(docker volume ls -q)
 
 .PHONY	: all build down re clean fclean

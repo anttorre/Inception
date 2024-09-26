@@ -8,6 +8,7 @@ RUN set -eux; \
     php \
     php-fpm \
     php-mysql \
+    redis-tools \
     wget \
     tar
 

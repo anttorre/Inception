@@ -38,18 +38,17 @@ wp theme install twentytwenty --activate --allow-root --path=/var/www/html/wordp
 # ************ BONUS REDIS *****************
 
 # Install and activate the Redis Object Cache plugin
-#descomentar para bonus
-#wp plugin install redis-cache --activate --allow-root --path=/var/www/html/wordpress
-#wp plugin update --all --allow-root --path=/var/www/html/wordpress
+wp plugin install redis-cache --activate --allow-root --path=/var/www/html/wordpress
+wp plugin update --all --allow-root --path=/var/www/html/wordpress
 
 # Update wp-config.php with environment variables
 # Insert Redis configuration before the line "That's all, stop editing! Happy publishing."
-#sed -i "/\/\* That's all, stop editing! Happy publishing. \*\//i \
-#define('WP_REDIS_HOST', 'redis');\n\
-#define('WP_REDIS_PORT', 6379);" /var/www/html/wordpress/wp-config.php
+sed -i "/\/\* That's all, stop editing! Happy publishing. \*\//i \
+define('WP_REDIS_HOST', 'redis');\n\
+define('WP_REDIS_PORT', 6379);" /var/www/html/wordpress/wp-config.php
 
-#sleep 5
-#wp redis enable --allow-root --path=/var/www/html/wordpress
+sleep 5
+wp redis enable --allow-root --path=/var/www/html/wordpress
 
 # ************** FIN BONUS *******************
 

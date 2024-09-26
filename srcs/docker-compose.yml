@@ -54,6 +54,17 @@ services:
       - "8080:8080"
     networks:
       - inception
+    restart: on-failure:5
+
+  redis:
+    build:
+      context: ./requirements/bonus/redis
+    container_name: redis
+    ports:
+      - 6379
+    networks:
+      - inception
+    restart: on-failure:5
 
 volumes:
   wp_data:
