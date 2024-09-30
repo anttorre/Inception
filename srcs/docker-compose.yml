@@ -66,6 +66,35 @@ services:
       - inception
     restart: on-failure:5
 
+  ftp:
+    build:
+      context: ./requirements/bonus/ftp
+    container_name: ftp
+    ports:
+      - "21:21"
+      - "40000-40005:40000-40005"
+    networks:
+      - inception
+    env_file:
+      - .env
+    restart: on-failure:5
+
+  portainer:
+    build:
+      context: ./requirements/bonus/portainer
+    container_name: portainer
+    ports:
+      - 9001:9000
+    networks:
+      - inception
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+      - /home/anttorre/.env:/usr/src/app/.env
+    env_file:
+      - .env
+    restart: on-failure:5
+
 volumes:
   wp_data:
     driver: local
@@ -79,6 +108,12 @@ volumes:
       o: bind
       type: none
       device: /home/${USER}/data/mariadb
+  portainer_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/${USER}/data/portainer
 
 networks:
   inception:
