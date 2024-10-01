@@ -89,8 +89,6 @@ services:
       - inception
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-      - /home/anttorre/.env:/usr/src/app/.env
     env_file:
       - .env
     restart: on-failure:5
@@ -108,12 +106,6 @@ volumes:
       o: bind
       type: none
       device: /home/${USER}/data/mariadb
-  portainer_data:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: /home/${USER}/data/portainer
 
 networks:
   inception:

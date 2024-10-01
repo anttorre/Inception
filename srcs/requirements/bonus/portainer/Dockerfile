@@ -18,16 +18,9 @@ RUN curl -L https://github.com/portainer/portainer/releases/download/2.21.0/port
     && tar -xzf portainer.tar.gz --strip-components=1 -C /usr/local/bin \
     && rm portainer.tar.gz
 
-# Copy initialization script
-COPY tools/setup-portainer.sh /usr/src/app/setup-portainer.sh
-
-# Make the initialization script executable
-RUN chmod +x /usr/src/app/setup-portainer.sh
-
 # Expose Portainer port
 EXPOSE 9000
 
 # Run the initialization script and then Portainer
-ENTRYPOINT ["/usr/src/app/setup-portainer.sh"]
 CMD ["portainer", "--no-ssl"]
 
