@@ -1,5 +1,5 @@
 server {
-    listen 80;  # Escuchar en el puerto 80
+    listen 5050;  # Escuchar en el puerto 80
     server_name anttorre.42.fr;  # Cambia esto por tu dominio o IP
 
     root /var/www/html;  # Ruta donde se encuentra tu index-static.html

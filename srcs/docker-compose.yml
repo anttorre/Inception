@@ -5,13 +5,13 @@ services:
     container_name: nginx
     ports:
       - "443:443"
-      - "80:80"
+      - "5050:5050"
     volumes:
       - wp_data:/var/www/html
     networks:
       - inception
     env_file:
-      - .env
+      - /home/anttorre/.env
     depends_on:
       - wordpress
     restart: on-failure:5
@@ -27,7 +27,7 @@ services:
     networks:
       - inception
     env_file:
-      - .env
+      - /home/anttorre/.env
     restart: on-failure:5
 
   wordpress:
@@ -39,7 +39,7 @@ services:
     networks:
       - inception
     env_file:
-      - .env
+      - /home/anttorre/.env
     depends_on:
       - mariadb
     restart: on-failure:5
@@ -76,7 +76,7 @@ services:
     networks:
       - inception
     env_file:
-      - .env
+      - /home/anttorre/.env
     restart: on-failure:5
 
   portainer:
@@ -90,7 +90,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     env_file:
-      - .env
+      - /home/anttorre/.env
     restart: on-failure:5
 
 volumes:

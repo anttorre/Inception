@@ -23,6 +23,7 @@ COPY conf/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 443
 EXPOSE 80
+EXPOSE 5050
 
 COPY tools/start.sh /start.sh
 RUN chmod +x /start.sh

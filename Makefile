@@ -1,60 +1,60 @@
 name = Inception
 all:
 	@printf "Configuring ${name}...\\n"
-	@if [ ! -d "~/data/" ]; then \
-		mkdir -p ~/data/; \
+	@if [ ! -d "$(HOME)/data/" ]; then \
+		mkdir -p $(HOME)/data/; \
 	fi
-	@if [ ! -d "~/data/mariadb" ]; then \
-		mkdir -p ~/data/mariadb; \
+	@if [ ! -d "$(HOME)/data/mariadb" ]; then \
+		mkdir -p $(HOME)/data/mariadb; \
 	fi
-	@if [ ! -d "~/data/wordpress" ]; then \
-		mkdir -p ~/data/wordpress; \
+	@if [ ! -d "$(HOME)/data/wordpress" ]; then \
+		mkdir -p $(HOME)/data/wordpress; \
 	fi
-	@docker-compose -f ~/srcs/docker-compose.yml --env-file ~/srcs/.env up -d
+	@docker-compose -f ./srcs/docker-compose.yml --env-file $(HOME)/.env up -d
 
 build:
 	@printf "Building ${name} configuration...\\n"
-	@if [ ! -d "~/data/" ]; then \
-		mkdir -p ~/data/; \
+	@if [ ! -d "$(HOME)/data/" ]; then \
+		mkdir -p $(HOME)/data/; \
 	fi
-	@if [ ! -d "~/data/mariadb" ]; then \
-		mkdir -p ~/data/mariadb; \
+	@if [ ! -d "$(HOME)/data/mariadb" ]; then \
+		mkdir -p $(HOME)/data/mariadb; \
 	fi
-	@if [ ! -d "~/data/wordpress" ]; then \
-		mkdir -p ~/data/wordpress; \
+	@if [ ! -d "$(HOME)/data/wordpress" ]; then \
+		mkdir -p $(HOME)/data/wordpress; \
 	fi
-	@docker-compose -f ~/srcs/docker-compose.yml --env-file ~/srcs/.env up -d --build
+	@docker-compose -f ./srcs/docker-compose.yml --env-file $(HOME)/.env up -d --build
 
 down:
 	@printf "Stopping ${name}...\\n"
-	@docker-compose -f ~/srcs/docker-compose.yml --env-file ~/srcs/.env down
+	@docker-compose -f ./srcs/docker-compose.yml --env-file $(HOME)/.env down
 
 re: down
 	@printf "Rebuilding ${name}...\\n"
-	@docker-compose -f ~/srcs/docker-compose.yml --env-file ~/srcs/.env up -d --build
-	@if [ ! -d "~/data/" ]; then \
-		mkdir -p ~/data/; \
+	@docker-compose -f ./srcs/docker-compose.yml --env-file $(HOME)/.env up -d --build
+	@if [ ! -d "$(HOME)/data/" ]; then \
+		mkdir -p $(HOME)/data/; \
 	fi
-	@if [ ! -d "~/data/mariadb" ]; then \
-		mkdir -p ~/data/mariadb; \
+	@if [ ! -d "$(HOME)/data/mariadb" ]; then \
+		mkdir -p $(HOME)/data/mariadb; \
 	fi
-	@if [ ! -d "~/data/wordpress" ]; then \
-		mkdir -p ~/data/wordpress; \
+	@if [ ! -d "$(HOME)/data/wordpress" ]; then \
+		mkdir -p $(HOME)/data/wordpress; \
 	fi
 clean: down
 	@printf "Cleaning ${name}...\\n"
 	@docker system prune -a
-	@sudo chmod -R 777 ~/data
-	@sudo rm -rf ~/data/wordpress/*
-	@sudo rm -rf ~/data/mariadb/*
+	@sudo chmod -R 777 $(HOME)/data
+	@sudo rm -rf $(HOME)/data/wordpress/*
+	@sudo rm -rf $(HOME)/data/mariadb/*
 
 fclean:
 	@printf "Full cleaning ${name}...\\n"
-	@sudo chmod -R 777 ~/data
-	@sudo rm -rf ~/data/mariadb/*
-	@sudo rm -rf ~/data/wordpress/*
-	@sudo rm -rf ~/data/*
-	@sudo rm -rf ~/data
+	@sudo chmod -R 777 $(HOME)/data
+	@sudo rm -rf $(HOME)/data/mariadb/*
+	@sudo rm -rf $(HOME)/data/wordpress/*
+	@sudo rm -rf $(HOME)/data/*
+	@sudo rm -rf $(HOME)/data
 	@docker stop $$(docker ps -qa)
 	@docker system prune --all --force --volumes
 	@docker network prune --force
